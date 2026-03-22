@@ -1,0 +1,33 @@
+# Build artifacts
+.build/
+build/
+bin/
+*.o
+*.a
+
+# IDE
+.idea/
+*.xcuserstate
+xcuserdata/
+.swiftpm/
+
+# Dependencies
+.dart_tool/
+.packages
+pubspec.lock
+
+# macOS
+.DS_Store
+*.icns.iconset/
+
+# Sensitive/Raw documents
+IDEATION_CHAT*.md
+docs/IDEATION_CHAT*.md
+
+# Credentials
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+secrets.json
