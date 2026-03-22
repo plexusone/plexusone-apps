@@ -5,6 +5,9 @@ import SwiftUI
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        // Activate the app to ensure window appears
+        NSApp.activate(ignoringOtherApps: true)
+
         // Configure app appearance
         configureAppearance()
 
