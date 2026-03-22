@@ -1,0 +1,83 @@
+import AppKit
+import SwiftUI
+
+/// AppDelegate for handling application-level events
+class AppDelegate: NSObject, NSApplicationDelegate {
+
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        // Configure app appearance
+        configureAppearance()
+
+        // Check for tmux installation
+        checkTmuxInstallation()
+    }
+
+    func applicationWillTerminate(_ notification: Notification) {
+        // Cleanup if needed
+        // Note: tmux sessions will continue running
+    }
+
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        // Keep app running even if all windows closed
+        // User might want to reattach to sessions
+        return false
+    }
+
+    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
+        return true
+    }
+
+    // MARK: - Private Methods
+
+    private func configureAppearance() {
+        // Use default macOS appearance
+        // Could be customized for terminal-specific styling
+    }
+
+    private func checkTmuxInstallation() {
+        Task {
+            let process = Process()
+            process.executableURL = URL(fileURLWithPath: "/usr/bin/which")
+            process.arguments = ["tmux"]
+
+            let pipe = Pipe()
+            process.standardOutput = pipe
+            process.standardError = pipe
+
+            do {
+                try process.run()
+                process.waitUntilExit()
+
+                if process.terminationStatus != 0 {
+                    await showTmuxNotInstalledAlert()
+                }
+            } catch {
+                await showTmuxNotInstalledAlert()
+            }
+        }
+    }
+
+    @MainActor
+    private func showTmuxNotInstalledAlert() {
+        let alert = NSAlert()
+        alert.messageText = "tmux Not Found"
+        alert.informativeText = """
+            Nexus requires tmux to manage terminal sessions.
+
+            Install tmux using Homebrew:
+            brew install tmux
+
+            Or visit: https://github.com/tmux/tmux
+            """
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "OK")
+        alert.addButton(withTitle: "Open Homebrew")
+
+        let response = alert.runModal()
+        if response == .alertSecondButtonReturn {
+            if let url = URL(string: "https://brew.sh") {
+                NSWorkspace.shared.open(url)
+            }
+        }
+    }
+}
