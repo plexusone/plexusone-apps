@@ -66,6 +66,8 @@ nav:
     - Design Documents: development/design-docs.md
   - Releases:
     - Changelog: releases/changelog.md
+    - v0.2.0: releases/v0.2.0.md
+    - v0.1.0: releases/v0.1.0.md
 
 extra:
   social:
