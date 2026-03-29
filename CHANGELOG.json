@@ -1,10 +1,38 @@
 {
   "irVersion": "1.0",
-  "project": "nexus",
-  "repository": "https://github.com/plexusone/nexus",
+  "project": "plexusone-apps",
+  "repository": "https://github.com/plexusone/plexusone-apps",
   "versioning": "semver",
   "commitConvention": "conventional",
   "releases": [
+    {
+      "version": "v0.3.0",
+      "date": "2026-03-29",
+      "highlights": [
+        { "description": "Multi-window support - open multiple windows with independent grid layouts sharing the same session pool" },
+        { "description": "Pop-out sessions - expand any session to its own dedicated window" },
+        { "description": "Renamed from Nexus to PlexusOne Desktop" }
+      ],
+      "added": [
+        { "description": "Multi-window support with independent grid layouts per window", "commit": "ff8d164" },
+        { "description": "Pop-out session feature to open sessions in dedicated 1×1 windows", "commit": "e50668d" },
+        { "description": "AppState singleton for shared state across windows", "commit": "b04e7ea" },
+        { "description": "WindowStateManager for multi-window persistence", "commit": "8ccbe27" },
+        { "description": "Multi-window state models (WindowConfig, WindowFrame, MultiWindowState)", "commit": "0232b80" }
+      ],
+      "changed": [
+        { "description": "Renamed from Nexus to PlexusOne Desktop", "commit": "1b77380" },
+        { "description": "State file renamed from nexus_state.json to state.json", "commit": "32cbe48" }
+      ],
+      "tests": [
+        { "description": "Unit tests for multi-window state models and WindowStateManager", "commit": "3250258" }
+      ],
+      "documentation": [
+        { "description": "Multi-window support documentation", "commit": "d4fc619" },
+        { "description": "Pop-out session documentation", "commit": "9f9ee8a" },
+        { "description": "Updated all docs to PlexusOne Desktop branding", "commit": "f91b9f0" }
+      ]
+    },
     {
       "version": "v0.2.0",
       "date": "2026-03-28",
@@ -34,7 +62,7 @@
       "version": "v0.1.0",
       "date": "2026-03-21",
       "highlights": [
-        { "description": "Initial release of Nexus - a multi-platform terminal client for AI agent sessions" },
+        { "description": "Initial release of PlexusOne Desktop - a multi-platform terminal client for AI agent sessions" },
         { "description": "macOS desktop app with SwiftUI, tmux session management, and multi-pane grid layout" },
         { "description": "Flutter mobile companion app with WebSocket connectivity" },
         { "description": "TUI parser backend service for terminal output parsing and WebSocket bridging" }
