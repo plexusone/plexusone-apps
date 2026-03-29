@@ -18,29 +18,84 @@ Features to make PlexusOne Desktop the best tool for developers using AI assista
 
 ### High Impact
 
+#### Input Detection (Foundation)
+
+Detect when any AI agent is waiting for user input. This is the foundational feature that enables alerts and agent-specific UI.
+
+**Universal patterns to detect:**
+
+| Pattern | Example | Agent |
+|---------|---------|-------|
+| Yes/No prompts | `[Y/n]`, `[y/N]`, `(yes/no)` | All |
+| Permission prompts | `? Allow clipboard access` | Claude Code |
+| Question prompts | `? Which option...` | Claude Code, Kiro |
+| Raised hand | `🙋`, `✋`, `🤚` | Gemini |
+| Continue prompts | `Press Enter to continue` | Various |
+| Input cursor | `> `, `? `, `>>> ` | REPLs, shells |
+| Approval requests | `Do you want to proceed?` | All |
+| Selection prompts | `Select an option (1-4):` | Various |
+
+**Detection approach:**
+
+- [ ] Monitor terminal output stream in real-time
+- [ ] Pattern matching with configurable regex rules
+- [ ] Track cursor position (waiting at prompt vs mid-output)
+- [ ] Detect output pause + cursor at line start
+- [ ] Emoji detection for visual indicators (🙋, ✋, ⏸️)
+- [ ] Track time since last output (distinguish thinking vs waiting)
+- [ ] Learn from user responses (ML enhancement later)
+
+**State machine:**
+
+```
+┌─────────┐    output    ┌─────────┐
+│  Idle   │ ──────────▶  │ Running │
+└─────────┘              └────┬────┘
+     ▲                        │
+     │                   pause + pattern
+     │                        │
+     │    user input     ┌────▼────┐
+     └─────────────────  │ Waiting │  ◀── ALERT!
+                         └─────────┘
+```
+
+#### Input Alerts
+
+Desktop notifications when AI is waiting for user input. Builds on Input Detection.
+
+- [ ] macOS notification with session name and prompt preview
+- [ ] Sound alert option (configurable per agent)
+- [ ] Badge app icon with pending input count
+- [ ] Bring window to front option
+- [ ] Menu bar indicator (colored dot)
+- [ ] Configurable alert delay (avoid spam during rapid prompts)
+- [ ] "Do not disturb" mode
+- [ ] Per-session alert preferences
+
 #### Agent Detection
 
-Auto-detect which AI assistant is running and provide agent-specific UI.
+Auto-detect which AI assistant is running. Enhances Input Detection with agent-specific context.
 
 **Detection methods:**
 
-- Parse process name (`claude`, `kiro`, `gemini`, `codex`)
-- Analyze output patterns (prompts, formatting)
-- Check for known environment variables
-- Monitor for agent-specific escape sequences
+- [ ] Parse process name (`claude`, `kiro`, `gemini`, `codex`)
+- [ ] Analyze output patterns (prompts, formatting, colors)
+- [ ] Check for known environment variables
+- [ ] Monitor for agent-specific escape sequences
+- [ ] Detect startup banners/signatures
 
-**Agent-specific UI elements:**
+**Agent-specific UI (after detection):**
 
 | Agent | Icon/Color | Status Indicators | Quick Actions |
 |-------|------------|-------------------|---------------|
 | Claude Code | Purple | Thinking spinner, tool use, permission requests | Approve (y), Reject (n), Interrupt |
 | Kiro CLI | Blue | Spec mode, steering, agent flow | Accept spec, Edit spec, Stop |
 | GitHub Copilot | Gray | Suggestion pending, explanation mode | Accept, Reject, Explain |
-| Gemini | Coral | Model indicator, function calling | Continue, Stop, Switch model |
+| Gemini | Coral | Model indicator, function calling, 🙋 alerts | Continue, Stop, Switch model |
 | Codex | Green | Generation status, edit mode | Apply, Discard, Refine |
 | Custom/Unknown | Default | Basic running/idle/stuck | Interrupt only |
 
-**Agent-specific features:**
+**Agent-specific enhancements:**
 
 - **Claude Code**
   - Show current tool being used (Read, Edit, Bash, etc.)
@@ -55,6 +110,11 @@ Auto-detect which AI assistant is running and provide agent-specific UI.
   - Show agent-to-agent handoff
   - Highlight implementation vs planning mode
 
+- **Gemini**
+  - Detect 🙋 raised hand indicator
+  - Show model being used
+  - Parse function calling status
+
 - **GitHub Copilot**
   - Show suggestion preview
   - Display explanation panel
@@ -64,18 +124,6 @@ Auto-detect which AI assistant is running and provide agent-specific UI.
   - Agent logo in session title bar
   - Agent-themed color accent
   - Contextual keyboard shortcuts
-
-#### Input Alerts
-
-Desktop notifications when AI is waiting for user input.
-
-- [ ] Detect "waiting for input" patterns in output
-- [ ] Parse permission requests (Claude's `[Y/n]` prompts)
-- [ ] macOS notification with session name
-- [ ] Sound alert option (configurable)
-- [ ] Badge app icon with pending count
-- [ ] Bring window to front option
-- [ ] Smart detection to avoid false positives
 
 #### Session Search
 
