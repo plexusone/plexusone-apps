@@ -14,6 +14,12 @@ struct NexusApp: App {
                 .onReceive(NotificationCenter.default.publisher(for: .newWindow)) { _ in
                     openWindow(id: "main")
                 }
+                .onReceive(NotificationCenter.default.publisher(for: .popOutSession)) { notification in
+                    if let session = notification.userInfo?["session"] as? NexusSession {
+                        appState.pendingPopOutSession = session
+                        openWindow(id: "main")
+                    }
+                }
         }
         .windowStyle(.titleBar)
         .windowToolbarStyle(.unified)
@@ -73,6 +79,7 @@ struct NexusApp: App {
 extension Notification.Name {
     static let newSession = Notification.Name("com.plexusone.nexus.newSession")
     static let newWindow = Notification.Name("com.plexusone.nexus.newWindow")
+    static let popOutSession = Notification.Name("com.plexusone.nexus.popOutSession")
     static let attachSession = Notification.Name("com.plexusone.nexus.attachSession")
     static let detachSession = Notification.Name("com.plexusone.nexus.detachSession")
     static let nextPane = Notification.Name("com.plexusone.nexus.nextPane")

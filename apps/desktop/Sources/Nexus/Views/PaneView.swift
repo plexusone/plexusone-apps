@@ -23,6 +23,16 @@ struct PaneView: View {
                 onDetach: {
                     attachedSession = nil
                 },
+                onPopOut: {
+                    if let session = attachedSession {
+                        // Post notification to pop out session to new window
+                        NotificationCenter.default.post(
+                            name: .popOutSession,
+                            object: nil,
+                            userInfo: ["session": session]
+                        )
+                    }
+                },
                 onNewSession: onRequestNewSession
             )
 
@@ -62,6 +72,7 @@ struct PaneHeaderView: View {
     let currentSession: NexusSession?
     let onSelectSession: (NexusSession) -> Void
     let onDetach: () -> Void
+    let onPopOut: () -> Void
     let onNewSession: () -> Void
 
     var body: some View {
@@ -125,8 +136,16 @@ struct PaneHeaderView: View {
                 .foregroundColor(Color(nsColor: .tertiaryLabelColor))
                 .padding(.horizontal, 4)
 
-            // Detach button (only show if attached)
+            // Pop-out and Detach buttons (only show if attached)
             if currentSession != nil {
+                Button(action: onPopOut) {
+                    Image(systemName: "arrow.up.forward.app")
+                        .font(.system(size: 9, weight: .medium))
+                        .foregroundColor(.secondary)
+                }
+                .buttonStyle(.plain)
+                .help("Pop Out to New Window")
+
                 Button(action: onDetach) {
                     Image(systemName: "xmark")
                         .font(.system(size: 9, weight: .medium))

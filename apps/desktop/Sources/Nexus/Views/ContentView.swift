@@ -132,6 +132,13 @@ struct ContentView: View {
 
         guard windowId == nil else { return }
 
+        // Check for pending pop-out session first
+        if let popOutSession = appState.pendingPopOutSession {
+            appState.pendingPopOutSession = nil
+            setupAsPopOutWindow(with: popOutSession)
+            return
+        }
+
         // Check if there are pending configs to restore
         if windowStateManager.hasPendingConfigs {
             // If this is an additional window (not the first), pop and use the next config directly
@@ -154,6 +161,15 @@ struct ContentView: View {
             // No saved state or already restored - register new window
             registerWindow()
         }
+    }
+
+    private func setupAsPopOutWindow(with session: NexusSession) {
+        // Create a 1×1 window config with the session attached
+        let popOutConfig = WindowConfig(
+            gridConfig: GridConfig(columns: 1, rows: 1),
+            paneAttachments: ["1": session.tmuxSession]
+        )
+        registerWindow(config: popOutConfig)
     }
 
     private func registerWindow(config: WindowConfig? = nil) {
