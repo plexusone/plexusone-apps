@@ -5,7 +5,7 @@ A multi-agent orchestration platform for AI CLI tools like Claude Code and Kiro 
 ## Repository Structure
 
 ```
-plexusone-apps/
+plexusone-app/
 ├── apps/
 │   ├── desktop/          # macOS app (Swift + SwiftTerm)
 │   └── mobile/           # iOS/Android companion (Flutter)

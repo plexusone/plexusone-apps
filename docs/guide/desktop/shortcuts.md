@@ -70,4 +70,4 @@ Future versions will add:
 
 Keyboard shortcuts are not yet customizable. This feature is planned for a future release.
 
-To request a shortcut, open an issue on [GitHub](https://github.com/plexusone/plexusone-apps/issues).
+To request a shortcut, open an issue on [GitHub](https://github.com/plexusone/plexusone-app/issues).

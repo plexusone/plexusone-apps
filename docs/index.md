@@ -57,7 +57,7 @@ PlexusOne Desktop is a terminal multiplexer designed specifically for managing m
 - :material-book-open-variant: **[User Guide](guide/desktop/overview.md)**
   Learn the full feature set
 
-- :material-github: **[Source Code](https://github.com/plexusone/plexusone-apps)**
+- :material-github: **[Source Code](https://github.com/plexusone/plexusone-app)**
   View on GitHub
 
 - :material-history: **[Changelog](releases/changelog.md)**

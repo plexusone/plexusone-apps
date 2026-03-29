@@ -261,7 +261,7 @@ A Go binary that wraps tmux sessions, intercepts PTY output, detects TUI pattern
 ### Location
 
 ```
-github.com/plexusone/plexusone-apps/tuiparser/
+github.com/plexusone/plexusone-app/tuiparser/
 ├── cmd/
 │   └── tuiparser/
 │       └── main.go

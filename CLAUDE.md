@@ -27,7 +27,7 @@ brew install go tmux
 ## Repository Structure
 
 ```
-plexusone-apps/
+plexusone-app/
 ├── apps/
 │   ├── desktop/              # PlexusOne Desktop (macOS) - Swift/SwiftUI
 │   │   ├── Sources/PlexusOneDesktop/
@@ -245,5 +245,5 @@ swift build
 
 ## Links
 
-- [MkDocs Site](https://plexusone.github.io/plexusone-apps/)
-- [GitHub Repo](https://github.com/plexusone/plexusone-apps)
+- [MkDocs Site](https://plexusone.github.io/plexusone-app/)
+- [GitHub Repo](https://github.com/plexusone/plexusone-app)

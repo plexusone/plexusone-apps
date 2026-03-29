@@ -1,9 +1,9 @@
 site_name: PlexusOne Desktop
 site_description: Multi-agent orchestration platform for AI CLI tools
-site_url: https://plexusone.github.io/plexusone-apps/
+site_url: https://plexusone.github.io/plexusone-app/
 
-repo_name: plexusone/plexusone-apps
-repo_url: https://github.com/plexusone/plexusone-apps
+repo_name: plexusone/plexusone-app
+repo_url: https://github.com/plexusone/plexusone-app
 
 theme:
   name: material
@@ -74,6 +74,6 @@ nav:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/plexusone/plexusone-apps
+      link: https://github.com/plexusone/plexusone-app
 
 copyright: Copyright &copy; 2024 PlexusOne

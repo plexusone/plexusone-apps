@@ -4,7 +4,7 @@
 
 ### Option 1: Download Release (Recommended)
 
-1. Download the latest release from [GitHub Releases](https://github.com/plexusone/plexusone-apps/releases)
+1. Download the latest release from [GitHub Releases](https://github.com/plexusone/plexusone-app/releases)
 2. Unzip and drag `PlexusOne Desktop.app` to your Applications folder
 3. Open PlexusOne Desktop from Applications (you may need to right-click → Open the first time)
 
@@ -20,8 +20,8 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/plexusone/plexusone-apps.git
-cd plexusone-apps/apps/desktop
+git clone https://github.com/plexusone/plexusone-app.git
+cd plexusone-app/apps/desktop
 
 # Build the app
 swift build -c release
@@ -48,7 +48,7 @@ The TUI Parser is a Go service that bridges tmux sessions to the mobile app over
 ### Build
 
 ```bash
-cd plexusone-apps/services/tuiparser
+cd plexusone-app/services/tuiparser
 
 # Build the binary
 go build -o bin/tuiparser ./cmd/tuiparser
@@ -78,7 +78,7 @@ Open http://localhost:9600 in your browser to see the debug console.
 For now, build from source:
 
 ```bash
-cd plexusone-apps/apps/mobile
+cd plexusone-app/apps/mobile
 flutter pub get
 flutter run --device-id <your-iphone-id>
 ```
@@ -91,7 +91,7 @@ flutter run --device-id <your-iphone-id>
 For now, build from source:
 
 ```bash
-cd plexusone-apps/apps/mobile
+cd plexusone-app/apps/mobile
 flutter pub get
 flutter build apk --release
 ```

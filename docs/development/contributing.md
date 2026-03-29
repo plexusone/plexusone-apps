@@ -15,8 +15,8 @@ Guidelines for contributing to PlexusOne Desktop.
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/plexusone/plexusone-apps.git
-cd plexusone-apps
+git clone https://github.com/plexusone/plexusone-app.git
+cd plexusone-app
 ```
 
 ### Build All Components

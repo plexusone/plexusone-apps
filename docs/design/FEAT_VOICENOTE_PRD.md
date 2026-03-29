@@ -6,7 +6,7 @@
 **Status:** Draft
 **Last Updated:** 2026-03-20
 **Related Projects:**
-- [PlexusOne Desktop](https://github.com/plexusone/plexusone-apps) - macOS terminal multiplexer for AI agents
+- [PlexusOne Desktop](https://github.com/plexusone/plexusone-app) - macOS terminal multiplexer for AI agents
 - [OmniVoice](https://github.com/plexusone/omnivoice) - Go voice pipeline framework (reference)
 
 ## Problem Statement
