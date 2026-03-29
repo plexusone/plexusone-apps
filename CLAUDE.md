@@ -6,6 +6,24 @@ Project context for Claude Code sessions.
 
 **PlexusOne Apps** is a multi-agent orchestration platform for AI CLI tools (Claude Code, Kiro CLI, etc.). It provides a unified interface to monitor and control multiple AI agents running in tmux sessions.
 
+## Prerequisites
+
+| Tool | Version | Notes |
+|------|---------|-------|
+| Xcode | 15+ | Provides Swift 5.9+ toolchain |
+| macOS | 14+ (Sonoma) | Required by desktop app |
+| Flutter | 3.x | Dart SDK >=2.18.6 included |
+| Go | 1.22+ | For tuiparser service |
+| tmux | 3.x | Session management backend |
+
+Install via Homebrew:
+
+```bash
+brew install go tmux
+# Flutter: https://docs.flutter.dev/get-started/install/macos
+# Xcode: App Store or https://developer.apple.com/xcode/
+```
+
 ## Repository Structure
 
 ```
@@ -49,7 +67,7 @@ Native terminal multiplexer built with Swift and SwiftTerm.
 ```bash
 cd apps/desktop
 swift build
-open "PlexusOne Desktop.app"
+.build/debug/PlexusOneDesktop
 ```
 
 **Run Tests:**
@@ -94,7 +112,20 @@ go build -o bin/tuiparser ./cmd/tuiparser
 
 ### Commit Messages
 
-Follow [Conventional Commits](https://www.conventionalcommits.org/):
+Follow [Conventional Commits](https://www.conventionalcommits.org/).
+
+**Valid scopes:**
+
+| Scope | Description |
+|-------|-------------|
+| `desktop` | PlexusOne Desktop (Swift/macOS) |
+| `mobile` | PlexusOne Mobile (Flutter) |
+| `tuiparser` | TUI Parser service (Go) |
+| `docs` | Documentation site |
+| (none) | Cross-cutting changes |
+
+**Examples:**
+
 ```
 feat(desktop): add multi-window support
 fix(mobile): handle WebSocket reconnection
@@ -118,6 +149,41 @@ Desktop app state is stored in:
 ```
 ~/.plexusone/state.json
 ```
+
+### Local Checks (Pre-Push)
+
+Run these checks before pushing:
+
+```bash
+# Desktop (Swift)
+cd apps/desktop && swift build && swift test
+
+# Mobile (Flutter)
+cd apps/mobile && flutter analyze && flutter test
+
+# TUI Parser (Go)
+cd services/tuiparser && go build ./... && go test ./...
+```
+
+**Note:** CI workflows are not yet configured. Run checks locally before pushing.
+
+### Environment Variables
+
+| Variable | Component | Description |
+|----------|-----------|-------------|
+| `SHELL` | Desktop | Shell for new tmux sessions (default: `/bin/zsh`) |
+| `TERM` | Desktop | Set to `xterm-256color` for terminal compatibility |
+| `LANG` | Desktop | Locale; set to `en_US.UTF-8` if unset |
+
+The tuiparser service has no required environment variables.
+
+### Linting
+
+| Component | Tool | Command |
+|-----------|------|---------|
+| Desktop | (none configured) | `swift build` catches errors |
+| Mobile | flutter_lints | `flutter analyze` |
+| TUI Parser | golangci-lint | `golangci-lint run` |
 
 ## Architecture Notes
 
