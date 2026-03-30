@@ -150,4 +150,4 @@ Debug console: http://localhost:9600
 
 ## License
 
-Proprietary - PlexusOne
+MIT - See [LICENSE](LICENSE)

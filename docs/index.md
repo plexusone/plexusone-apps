@@ -9,6 +9,8 @@ PlexusOne Desktop is a terminal multiplexer designed specifically for managing m
 ### Desktop App (macOS)
 
 - **Multi-pane grid layout** - View multiple agent sessions side-by-side (1x1 to 4x4)
+- **Input detection** - Real-time detection of AI prompts (Yes/No, permissions, selections)
+- **Focus indicator** - Visual blue border showing which pane has keyboard focus
 - **Session management** - Attach/detach to tmux sessions on the fly
 - **State persistence** - Automatically restore your workspace on restart
 - **Large scrollback** - 10,000 line buffer for reviewing agent output
@@ -81,10 +83,11 @@ PlexusOne Desktop solves these problems with a purpose-built interface for AI ag
 | Component | Status |
 |-----------|--------|
 | Desktop App (macOS) | ✅ Functional |
+| Input Detection (AssistantKit) | ✅ Functional |
 | TUI Parser (WebSocket Bridge) | ✅ Functional |
 | Mobile App (Flutter) | 🚧 In Development |
-| Pattern Detection | 📋 Planned |
+| macOS Notifications | 📋 Planned |
 
 ## License
 
-Proprietary - PlexusOne
+MIT - See [LICENSE](https://github.com/plexusone/plexusone-app/blob/main/LICENSE)
