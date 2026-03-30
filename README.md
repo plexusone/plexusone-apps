@@ -24,8 +24,12 @@ Native macOS terminal multiplexer built with Swift and SwiftTerm.
 - Multi-window, multi-pane grid layout
 - Attach/detach to tmux sessions
 - Pop-out sessions to dedicated windows
+- **Input detection** for AI assistant prompts (Claude, Kiro, etc.)
+- Visual focus indicator for active pane
 - Session state persistence
 - 10,000 line scrollback buffer
+
+**Download:** [Releases](https://github.com/plexusone/plexusone-app/releases)
 
 **Build & Run:**
 ```bash
