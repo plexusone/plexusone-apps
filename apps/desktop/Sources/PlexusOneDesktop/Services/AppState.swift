@@ -10,6 +10,9 @@ final class AppState {
     /// Window state manager for persistence
     let windowStateManager: WindowStateManager
 
+    /// Input monitor for detecting AI assistant input prompts
+    let inputMonitor: InputMonitor
+
     /// Whether the app has completed initial setup
     private(set) var isInitialized = false
 
@@ -20,12 +23,15 @@ final class AppState {
     /// - Parameters:
     ///   - sessionManager: Session manager instance (defaults to new instance)
     ///   - windowStateManager: Window state manager instance (defaults to new instance)
+    ///   - inputMonitor: Input monitor instance (defaults to new instance)
     init(
         sessionManager: SessionManager = SessionManager(),
-        windowStateManager: WindowStateManager = WindowStateManager()
+        windowStateManager: WindowStateManager = WindowStateManager(),
+        inputMonitor: InputMonitor = InputMonitor()
     ) {
         self.sessionManager = sessionManager
         self.windowStateManager = windowStateManager
+        self.inputMonitor = inputMonitor
     }
 
     /// Start monitoring sessions (call once at app launch)

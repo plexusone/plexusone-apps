@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "assistantkit-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/plexusone/assistantkit-swift.git",
+      "state" : {
+        "revision" : "7ea9c2547b48b91ce602808711e14b6704fed864",
+        "version" : "0.1.0"
+      }
+    },
+    {
       "identity" : "swift-argument-parser",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-argument-parser",

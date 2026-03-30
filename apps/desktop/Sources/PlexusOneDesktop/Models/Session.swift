@@ -1,4 +1,5 @@
 import Foundation
+import AssistantKit
 
 /// Represents a tmux session that can be attached to a pane
 struct Session: Identifiable, Codable, Hashable {
@@ -9,6 +10,7 @@ struct Session: Identifiable, Codable, Hashable {
     var status: SessionStatus
     var lastActivity: Date
     var metadata: [String: String]
+    var inputStatus: InputStatus?
 
     init(
         id: UUID = UUID(),
@@ -17,7 +19,8 @@ struct Session: Identifiable, Codable, Hashable {
         agentType: AgentType? = nil,
         status: SessionStatus = .detached,
         lastActivity: Date = Date(),
-        metadata: [String: String] = [:]
+        metadata: [String: String] = [:],
+        inputStatus: InputStatus? = nil
     ) {
         self.id = id
         self.name = name
@@ -26,6 +29,28 @@ struct Session: Identifiable, Codable, Hashable {
         self.status = status
         self.lastActivity = lastActivity
         self.metadata = metadata
+        self.inputStatus = inputStatus
+    }
+}
+
+/// Status of detected input prompt
+struct InputStatus: Codable, Hashable {
+    let detectedAt: Date
+    let patternType: String  // PatternType.rawValue
+    let matchedText: String
+    let confidence: Double
+
+    // For Hashable conformance
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(detectedAt)
+        hasher.combine(patternType)
+        hasher.combine(matchedText)
+    }
+
+    static func == (lhs: InputStatus, rhs: InputStatus) -> Bool {
+        lhs.detectedAt == rhs.detectedAt &&
+        lhs.patternType == rhs.patternType &&
+        lhs.matchedText == rhs.matchedText
     }
 }
 
