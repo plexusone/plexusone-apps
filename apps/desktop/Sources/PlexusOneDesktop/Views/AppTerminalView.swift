@@ -63,6 +63,12 @@ class AppTerminalView: LocalProcessTerminalView {
     }
 
     func attach(to session: Session) {
+        // Terminate any existing process before attaching to a new session
+        // This prevents the old tmux attach from continuing to run
+        if isSessionAttached {
+            terminate()
+        }
+
         currentSessionId = session.id
 
         let (tmuxPath, baseArgs) = findTmuxExecutable()
@@ -85,9 +91,10 @@ class AppTerminalView: LocalProcessTerminalView {
     }
 
     func detach() {
+        // Terminate the tmux attach process
+        // The tmux session itself continues running in background
+        terminate()
         currentSessionId = nil
-        // The process termination is handled by SwiftTerm
-        // tmux session continues running in background
     }
 
     private func findTmuxExecutable() -> (path: String, baseArgs: [String]) {

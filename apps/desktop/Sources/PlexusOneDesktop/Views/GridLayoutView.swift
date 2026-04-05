@@ -78,6 +78,9 @@ struct GridLayoutView: View {
                                 onRequestNewSession: onRequestNewSession
                             )
                             .frame(width: paneWidth - 2, height: paneHeight - 2)
+                            // Use paneId as stable identity so SwiftUI doesn't reuse
+                            // terminal views incorrectly when grid configuration changes
+                            .id(paneId)
                         }
                     }
                 }
