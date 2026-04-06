@@ -5,6 +5,10 @@ import SwiftUI
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        // Ensure the app runs as a regular foreground app (shows in Dock and Cmd+Tab)
+        // This is needed when running the executable directly instead of from an app bundle
+        NSApp.setActivationPolicy(.regular)
+
         // Activate the app to ensure window appears
         NSApp.activate(ignoringOtherApps: true)
 
